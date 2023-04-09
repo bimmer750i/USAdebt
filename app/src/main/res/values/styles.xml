@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="textviewstyleday" parent="TextViewStyleDay">
+        <item name="android:fontFamily">@font/raleway_medium</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="textviewstylenight" parent="TextViewStyleNight">
+        <item name="android:fontFamily">@font/raleway_medium</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="bottomnavbarstyle" parent="Widget.Design.BottomNavigationView">
+        <item name="android:fontFamily">@font/raleway_medium</item>
+    </style>
+    <style name="chipText" parent="TextAppearance.MaterialComponents.Chip">
+        <item name="android:fontFamily">@font/raleway_medium</item>
+    </style>
+    <style name="spinnertext" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
+        <item name="android:fontFamily">@font/raleway</item>
+    </style>
+
+</resources>

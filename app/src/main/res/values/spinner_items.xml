@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="currency_array">
+        <item>@string/select_currency</item>
+        <item>🇪🇺EUR</item>
+        <item>🇬🇧GBP</item>
+        <item>🇯🇵JPY</item>
+        <item>🇨🇦CAD</item>
+        <item>🇦🇺AUD</item>
+        <item>🇳🇿NZD</item>
+    </string-array>
+</resources>
