@@ -5,28 +5,15 @@ plugins {
 }
 
 android {
-    signingConfigs {
-        debug {
-            storeFile file('C:\\Users\\semio\\Androkey\\usadebt.jks')
-            storePassword 'dzhubgAA39'
-            keyAlias 'usa_national_debt_key'
-            keyPassword 'dzhubgAA39'
-        }
-        release {
-            storeFile file('C:\\Users\\semio\\Androkey\\usadebt.jks')
-            keyAlias 'usa_national_debt_key'
-            storePassword 'dzhubgAA39'
-            keyPassword 'dzhubgAA39'
-        }
-    }
+
     compileSdk 33
 
     defaultConfig {
         applicationId "broz.tito.usadebt"
         minSdk 24
         targetSdk 33
-        versionCode 2
-        versionName "1.0.1"
+        versionCode 3
+        versionName "1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.debug
     }

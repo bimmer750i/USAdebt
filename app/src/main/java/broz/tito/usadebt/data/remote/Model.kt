@@ -25,6 +25,18 @@ class Model {
 
     val baseService  = retrofit.create(BaseRemoteService::class.java)
 
+    val retrofit1 = Retrofit.Builder()
+        .baseUrl("https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+    val currencyV1Service  = retrofit1.create(BaseRemoteService::class.java)
+
+    val retrofit2 = Retrofit.Builder()
+        .baseUrl("https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+    val currencyV2Service = retrofit2.create(CurrencyRemoteService::class.java)
+
 
     suspend fun getDebt(): Flow<DebtResult> = flow {
         Log.d(TAG, "getting Debt")
@@ -41,14 +53,10 @@ class Model {
         }
     }.flowOn(Dispatchers.IO)
 
+    // Currency V1, mentioned in domain/data layer as currency_V1
     suspend fun getCurrency(): Flow<CurrencyResult> = flow {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        val service  = retrofit.create(BaseRemoteService::class.java)
         emit(PendingCurrencyResult())
-        val response = service.getCurrency()
+        val response = currencyV1Service.getCurrency()
         if (!response.isSuccessful) {
             emit(FailureCurrencyResult())
         }
@@ -60,13 +68,8 @@ class Model {
     }.flowOn(Dispatchers.IO)
 
     suspend fun getCurrencyV2(): Flow<CurrencyV2Result> = flow {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        val service = retrofit.create(CurrencyRemoteService::class.java)
         emit(PendingCurrencyV2Result())
-        val response = service.getCurrency_v2()
+        val response = currencyV2Service.getCurrency_v2()
         if (!response.isSuccessful) {
             Log.d(TAG, response.code().toString())
             emit(FailureCurrencyV2Result())
