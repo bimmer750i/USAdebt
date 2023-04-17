@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 
-class LoadSelectedCurrenciesUseCase @Inject constructor(private val repository: RemoteCurrenciesRepository, private val mapToStringResources: MapToStringResources) {
+class LoadSelectedCurrenciesUseCase @Inject constructor(private val repository: RemoteCurrenciesRepository, private val mapToStringResources: MapToStringResources, private val model: Model) {
 
     val TAG = "LoadCurrenciesUseCase"
 
@@ -23,7 +23,7 @@ class LoadSelectedCurrenciesUseCase @Inject constructor(private val repository: 
         return repository.loadCurrencies().map { result ->
             if (result is SuccessRawCurrencyV2Result) {
                 var date: String
-                if (Model.getInstance().parser is RParser) {
+                if (model.parser is RParser) {
                     date = convertToRDate(result.rawcurrency2.date)
                 }
                 else {

@@ -42,10 +42,10 @@ class CurrencyFragment : Fragment() {
         binding.currencyswiperefresh.setOnRefreshListener {
             binding.currencyswiperefresh.isRefreshing = false
             viewLifecycleOwner.lifecycleScope.launch {
-                viewModel.getCurrency()
+                //viewModel.getCurrency()
             }
         }
-        viewModel.currencyResult.observe(viewLifecycleOwner, Observer {
+       /* viewModel.currencyResult.observe(viewLifecycleOwner, Observer {
             when(it) {
                 is SuccessCurrencyResult -> {
                     hideAll()
@@ -62,7 +62,7 @@ class CurrencyFragment : Fragment() {
                     binding.currencyProgressBar.visibility = View.VISIBLE
                 }
             }
-        })
+        })*/
 
 
 
@@ -72,7 +72,7 @@ class CurrencyFragment : Fragment() {
     override fun onStart() {
         if (!isLoaded) {
             viewLifecycleOwner.lifecycleScope.launch {
-                viewModel.getCurrency()
+                //viewModel.getCurrency()
             }
         }
         super.onStart()

@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.onEach
 class CurrencyFragmentViewModel(): ViewModel() {
 
 
-    private val useCase = CurrencyUseCase(CurrencyRepositoryImpl())
+    /*private val useCase = CurrencyUseCase(CurrencyRepositoryImpl())
     private val _currencyResult = MutableLiveData<CurrencyResult>()
     val currencyResult: LiveData<CurrencyResult> = _currencyResult
     private val TAG = "CurrencyViewModel"
@@ -20,6 +20,6 @@ class CurrencyFragmentViewModel(): ViewModel() {
        useCase().onEach {
            _currencyResult.postValue(it)
        }.launchIn(viewModelScope)
-    }
+    }*/
 
 }

@@ -12,31 +12,20 @@ import retrofit2.converter.gson.GsonConverterFactory
 import broz.tito.usadebt.data.remote.parsers.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
+import javax.inject.Inject
+import javax.inject.Named
+import javax.inject.Singleton
 
-class Model {
+@Singleton
+class Model @Inject constructor(
+            @param:Named("base")
+            val baseService: BaseRemoteService,
+            @param:Named("currency")
+            val currencyV1Service: BaseRemoteService,
+            val currencyV2Service: CurrencyRemoteService) {
 
-    var parser: Parser = EnglishParser()
     val TAG = "Model"
-
-    private val retrofit = Retrofit.Builder()
-        .baseUrl("https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-
-    val baseService  = retrofit.create(BaseRemoteService::class.java)
-
-    val retrofit1 = Retrofit.Builder()
-        .baseUrl("https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-    val currencyV1Service  = retrofit1.create(BaseRemoteService::class.java)
-
-    val retrofit2 = Retrofit.Builder()
-        .baseUrl("https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-    val currencyV2Service = retrofit2.create(CurrencyRemoteService::class.java)
-
+    var parser: Parser = EnglishParser()
 
     suspend fun getDebt(): Flow<DebtResult> = flow {
         Log.d(TAG, "getting Debt")
@@ -115,15 +104,4 @@ class Model {
         }
     }.flowOn(Dispatchers.IO)
 
-    companion object {
-        private lateinit var model: Model
-        fun getInstance(): Model {
-            return if (!this::model.isInitialized) {
-                model = Model()
-                model
-            } else {
-                model
-            }
-        }
-    }
 }

@@ -7,8 +7,9 @@ import broz.tito.usadebt.domain.currentdebtdomain.CurrentDebtUseCase
 import broz.tito.usadebt.model.DebtResult
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import javax.inject.Inject
 
-class DebtFragmentViewModel(val currentDebtUseCase: CurrentDebtUseCase): ViewModel() {
+class DebtFragmentViewModel @Inject constructor(val currentDebtUseCase: CurrentDebtUseCase): ViewModel() {
     val TAG = "ViewModel"
 
 

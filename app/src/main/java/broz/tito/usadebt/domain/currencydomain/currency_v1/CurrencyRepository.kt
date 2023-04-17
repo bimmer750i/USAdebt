@@ -5,6 +5,6 @@ import broz.tito.usadebt.model.CurrencyResult
 import kotlinx.coroutines.flow.Flow
 
 interface CurrencyRepository {
-    val model: Model
+
     suspend fun getCurrency(): Flow<CurrencyResult>
 }

@@ -13,16 +13,27 @@ import broz.tito.usadebt.presentation.di.AppComponent
 import broz.tito.usadebt.presentation.di.AppModule
 import broz.tito.usadebt.presentation.di.DaggerAppComponent
 import java.util.*
+import javax.inject.Inject
 
 class App: Application() {
 
-    val applicationModel = Model.getInstance()
+    @Inject
+    lateinit var applicationModel: Model
+
     private lateinit var useCase: ThemeUseCase
 
     lateinit var appComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()
+
+        appComponent = DaggerAppComponent
+            .builder()
+            .context(this)
+            .build()
+
+        appComponent.inject(this)
+
         if (Locale.getDefault().language.equals("ru")) {
             applicationModel.parser = RParser()
         }
@@ -31,10 +42,6 @@ class App: Application() {
         }
         useCase = ThemeUseCase(ThemeRepositoryImpl(this))
         useCase.setTheme(useCase.getTheme())
-        
-        appComponent = DaggerAppComponent
-            .builder()
-            .appModule(AppModule(context = this))
-            .build()
+
     }
 }

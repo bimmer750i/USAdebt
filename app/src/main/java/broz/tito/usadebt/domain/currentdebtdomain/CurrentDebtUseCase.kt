@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class CurrentDebtUseCase @Inject constructor(val repository: CurrentDebtRepository) {
+class CurrentDebtUseCase @Inject constructor(val repository: CurrentDebtRepository, val model: Model) {
 
     val TAG = "UseCase"
 
@@ -19,7 +19,7 @@ class CurrentDebtUseCase @Inject constructor(val repository: CurrentDebtReposito
         repository.getDebt().map {
             Log.d(TAG, "Calling repository")
             if (it is SuccessRawDebtResult) {
-                val debt = mapToDebt(it.rawDebt, Model.getInstance())
+                val debt = mapToDebt(it.rawDebt, model)
                 return@map SuccessDebtResult(debt)
             } else {
                 return@map it

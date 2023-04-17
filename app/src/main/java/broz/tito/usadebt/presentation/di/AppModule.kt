@@ -5,6 +5,7 @@ import broz.tito.usadebt.data.currencydata.currency_v2.LocalCurrenciesRepository
 import broz.tito.usadebt.data.currencydata.currency_v2.RemoteCurrenciesRepositoryImpl
 import broz.tito.usadebt.data.currentdebtdata.CurrentDebtRepositoryImpl
 import broz.tito.usadebt.data.debthistorydata.DebtHistoryRepositoryImpl
+import broz.tito.usadebt.data.remote.Model
 import broz.tito.usadebt.domain.currencydomain.currency_v2.local.*
 import broz.tito.usadebt.domain.currencydomain.currency_v2.remote.LoadSelectedCurrenciesUseCase
 import broz.tito.usadebt.domain.currencydomain.currency_v2.remote.RemoteCurrenciesRepository
@@ -19,33 +20,33 @@ import broz.tito.usadebt.presentation.viewmodels.factories.HistoryFragmentViewMo
 import broz.tito.usadebt.presentation.viewmodels.factories.SelectedCurrenciesViewModelFactory
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 @Module
-class AppModule(val context: Context) {
+class AppModule() {
 
     @Provides
-    fun provideContext(): Context {
-        return context
-    }
-
-    @Provides
+    @Singleton
     fun provideLocalCurrencyRepository(): LocalCurrenciesRepository {
         return LocalCurrenciesRepositoryImpl()
     }
 
     @Provides
-    fun provideRemoteCurrencyRepository(): RemoteCurrenciesRepository {
-        return RemoteCurrenciesRepositoryImpl()
+    @Singleton
+    fun provideRemoteCurrencyRepository(model: Model): RemoteCurrenciesRepository {
+        return RemoteCurrenciesRepositoryImpl(model)
     }
 
     @Provides
-    fun provideCurrentDebtRepository(): CurrentDebtRepository {
-        return CurrentDebtRepositoryImpl()
+    @Singleton
+    fun provideCurrentDebtRepository(model: Model): CurrentDebtRepository {
+        return CurrentDebtRepositoryImpl(model)
     }
 
     @Provides
-    fun provideDebtHistoryRepository(): DebtHistoryRepository {
-        return DebtHistoryRepositoryImpl()
+    @Singleton
+    fun provideDebtHistoryRepository(model: Model): DebtHistoryRepository {
+        return DebtHistoryRepositoryImpl(model)
     }
 
 

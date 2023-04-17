@@ -6,14 +6,15 @@ import broz.tito.usadebt.data.remote.parsers.convertToRDate
 import broz.tito.usadebt.model.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class CurrencyUseCase(val repository: CurrencyRepository) {
+class CurrencyUseCase (val repository: CurrencyRepository, val model: Model) {
 
     suspend operator fun invoke(): Flow<CurrencyResult> =
         repository.getCurrency().map {
             if (it is SuccessRawCurrencyResult) {
                 val raw = it.rawCurrency
-                val map = parseFromRawCurrency(raw,repository.model)
+                val map = parseFromRawCurrency(raw,model)
                 return@map SuccessCurrencyResult(map)
             }
             else {
