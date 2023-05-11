@@ -1,7 +1,5 @@
 # UsaDebt
 
-Download at [Google play](https://play.google.com/store/apps/details?id=broz.tito.usadebt)
-
 Architecture: MVVM + Clean Architecture
 
 Web connections: [Retrofit 2](https://github.com/bimmer750i/UsaDebt/tree/main/app/src/main/java/broz/tito/usadebt/data/remote)
