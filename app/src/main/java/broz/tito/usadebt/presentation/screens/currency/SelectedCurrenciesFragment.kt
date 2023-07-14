@@ -45,10 +45,8 @@ class SelectedCurrenciesFragment : Fragment(), FragmentController {
             adapter.list = savedInstanceState.getSerializable(ARG_LIST) as ArrayList<CurrencyV2Entity>
         }
         viewModel = ViewModelProvider(this,factory)[SelectedCurrenciesViewModel::class.java]
-        lifecycleScope.launch {
-            if (!isLoaded) {
-                viewModel.loadCurrencies(requireContext())
-            }
+        if (!isLoaded) {
+            viewModel.loadCurrencies(requireContext())
         }
     }
 
@@ -82,12 +80,15 @@ class SelectedCurrenciesFragment : Fragment(), FragmentController {
             }
         }
         viewModel.currencyList.observe(viewLifecycleOwner) {
-            Log.d(TAG, it.javaClass.name.toString())
             if (it is SuccessCurrencyV2Result) {
                 hideAll()
                 showResult()
                 adapter.list = it.currency.currencyList
                 binding.date.text = it.currency.date
+                if (adapter.list.size == 0) {
+                    hideAll()
+                    showEmpty()
+                }
             }
             else if (it is PendingCurrencyV2Result) {
                 hideAll()
@@ -106,10 +107,7 @@ class SelectedCurrenciesFragment : Fragment(), FragmentController {
         parentFragmentManager.setFragmentResultListener(ChooseCurrencyFragment.UPDATE,viewLifecycleOwner) { requestKey: String, data: Bundle ->
             val reload = data.getBoolean(ChooseCurrencyFragment.VALUE)
             if (reload) {
-                lifecycleScope.launch {
-                    viewModel.loadCurrencies(requireContext())
-                    Log.d(TAG, "Updated selected currency list with new currencies !!!")
-                }
+                viewModel.loadCurrencies(requireContext())
             }
         }
     }
@@ -141,10 +139,14 @@ class SelectedCurrenciesFragment : Fragment(), FragmentController {
         binding.progressBar5.visibility = View.GONE
         binding.recyclerView.visibility = View.GONE
         binding.currencyerrortext.visibility  = View.GONE
+        binding.emptyListTextview.visibility = View.GONE
     }
 
     override fun showError() {
         binding.currencyerrortext.visibility = View.VISIBLE
     }
 
+    override fun showEmpty() {
+        binding.emptyListTextview.visibility = View.VISIBLE
+    }
 }

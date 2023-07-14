@@ -1,14 +1,13 @@
 package broz.tito.usadebt.presentation.screens.debt
 
+import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.transition.TransitionManager
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import broz.tito.usadebt.App
 import broz.tito.usadebt.R
 import broz.tito.usadebt.databinding.FragmentDebtBinding
@@ -17,7 +16,6 @@ import broz.tito.usadebt.model.PendingDebtResult
 import broz.tito.usadebt.model.SuccessDebtResult
 import broz.tito.usadebt.presentation.viewmodels.DebtFragmentViewModel
 import broz.tito.usadebt.presentation.viewmodels.factories.DebtFragmentViewModelFactory
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -92,9 +90,7 @@ class DebtFragment : Fragment() {
         })
 
         binding.swiperefresh.setOnRefreshListener {
-            viewLifecycleOwner.lifecycleScope.launch {
-                viewModel.getDebt()
-            }
+            viewModel.getDebt()
             binding.swiperefresh.isRefreshing = false
         }
         return binding.root
@@ -103,9 +99,7 @@ class DebtFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (!isLoaded) {
-            viewLifecycleOwner.lifecycleScope.launch {
-                viewModel.getDebt()
-            }
+            viewModel.getDebt()
             isLoaded = true
         }
         else {

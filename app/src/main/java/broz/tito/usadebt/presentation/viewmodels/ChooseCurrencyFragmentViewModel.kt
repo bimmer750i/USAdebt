@@ -25,7 +25,7 @@ class ChooseCurrencyFragmentViewModel @Inject constructor(val unselectedCurrenci
 
 
 
-    suspend fun getUnselectedCurrencies(context: Context) {
+    fun getUnselectedCurrencies(context: Context) {
         viewModelScope.launch(Dispatchers.IO) {
             val list = async {
                 return@async unselectedCurrenciesUseCase()
@@ -35,7 +35,7 @@ class ChooseCurrencyFragmentViewModel @Inject constructor(val unselectedCurrenci
         }
     }
 
-    suspend fun setSelectedCurrencies(context: Context,itemList: ArrayList<CurrencyEntityRoom>) {
+    fun setSelectedCurrencies(context: Context,itemList: ArrayList<CurrencyEntityRoom>) {
         viewModelScope.launch(Dispatchers.IO) {
             setSelectedCurrenciesUseCase(context, itemList)
         }

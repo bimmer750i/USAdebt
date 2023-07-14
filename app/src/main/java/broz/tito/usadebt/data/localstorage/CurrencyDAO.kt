@@ -2,6 +2,7 @@ package broz.tito.usadebt.data.localstorage
 
 import androidx.room.*
 import broz.tito.usadebt.data.currencydata.currency_v2.CurrencyEntityRoom
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CurrencyDAO {

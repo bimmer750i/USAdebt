@@ -1,5 +1,6 @@
 package broz.tito.usadebt.presentation.screens.history
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -60,37 +61,27 @@ class HistoryFragment : Fragment() {
                     when(checkedIds.first()) {
                         binding.chip0.id -> {
                             if (isLoaded) return
-                            lifecycleScope.launch {
-                                viewModel.getHistory("7")
-                            }
+                            viewModel.getHistory("7")
                             return
                         }
                         binding.chip1.id -> {
                             if (isLoaded) return
-                            lifecycleScope.launch {
-                                viewModel.getHistory("14")
-                            }
+                            viewModel.getHistory("14")
                             return
                         }
                         binding.chip2.id -> {
                             if (isLoaded) return
-                            lifecycleScope.launch {
-                                viewModel.getHistory("30")
-                            }
+                            viewModel.getHistory("30")
                             return
                         }
                         binding.chip3.id -> {
                             if (isLoaded) return
-                            lifecycleScope.launch {
-                                viewModel.getHistory("60")
-                            }
+                            viewModel.getHistory("60")
                             return
                         }
                         binding.chip4.id -> {
                             if (isLoaded) return
-                            lifecycleScope.launch {
-                                viewModel.getHistory("180")
-                            }
+                            viewModel.getHistory("180")
                             return
                         }
                     }

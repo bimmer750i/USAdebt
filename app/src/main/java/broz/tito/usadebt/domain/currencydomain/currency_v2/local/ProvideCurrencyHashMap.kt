@@ -14,5 +14,12 @@ fun provideCurrenciesHashMap(): HashMap<String,Int> {
         put("rub", R.string.rub)
         put("inr", R.string.inr)
         put("chf", R.string.chf)
+        put("hkd",R.string.hkd)
+        put("sek",R.string.sek)
+        put("krw",R.string.krw)
+        put("nok",R.string.nok)
+        put("mxn",R.string.mxn)
+        put("zar",R.string.zar)
+        put("brl",R.string.brl)
     }
 }

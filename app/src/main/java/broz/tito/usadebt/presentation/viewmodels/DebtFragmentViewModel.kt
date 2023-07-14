@@ -5,8 +5,10 @@ import androidx.lifecycle.*
 import broz.tito.usadebt.data.currentdebtdata.CurrentDebtRepositoryImpl
 import broz.tito.usadebt.domain.currentdebtdomain.CurrentDebtUseCase
 import broz.tito.usadebt.model.DebtResult
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class DebtFragmentViewModel @Inject constructor(val currentDebtUseCase: CurrentDebtUseCase): ViewModel() {
@@ -17,11 +19,13 @@ class DebtFragmentViewModel @Inject constructor(val currentDebtUseCase: CurrentD
     val currentDebt: LiveData<DebtResult> = _currentDebt
 
 
-    suspend fun getDebt() {
+    fun getDebt() {
         Log.d(TAG, "Calling UseCase")
-        currentDebtUseCase().onEach {
-            _currentDebt.postValue(it)
-        }.launchIn(viewModelScope)
+        viewModelScope.launch {
+            currentDebtUseCase().onEach {
+                _currentDebt.postValue(it)
+            }.collect()
+        }
     }
 
 }

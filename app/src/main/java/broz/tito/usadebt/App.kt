@@ -3,7 +3,6 @@ package broz.tito.usadebt
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatDelegate
 import broz.tito.usadebt.data.remote.Model
 import broz.tito.usadebt.data.remote.parsers.EnglishParser
 import broz.tito.usadebt.data.remote.parsers.RParser

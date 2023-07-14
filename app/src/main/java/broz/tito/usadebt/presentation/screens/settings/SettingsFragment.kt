@@ -27,7 +27,6 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentSettingsBinding.inflate(inflater,container,false)
         binding.themecardview.setOnClickListener {
             val list = arrayOf(getString(R.string.system_theme),getString(R.string.light_theme),getString(R.string.dark_theme))

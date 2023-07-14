@@ -63,9 +63,7 @@ class ChooseCurrencyFragment : Fragment() {
         viewModel.unSelectedCurrenciesLiveData.observe(viewLifecycleOwner) {
             adapter.list = it
         }
-        lifecycleScope.launch {
-            viewModel.getUnselectedCurrencies(requireContext())
-        }
+        viewModel.getUnselectedCurrencies(requireContext())
         lifecycleScope.launchWhenResumed {
             adapter.state.collectLatest {
                 if (it == 0) {

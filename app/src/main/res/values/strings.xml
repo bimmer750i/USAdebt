@@ -36,6 +36,7 @@
     <string name="currency_header">🇺🇸 1 U.S. Dollar equals:</string>
     <string name="go_back">Back</string>
     <string name="add">Add</string>
+    <string name="empty_currency_list">No currencies selected</string>
     <string name="eur">🇪🇺Euro</string>
     <string name="gbp">🇬🇧British Pound</string>
     <string name="jpy">🇯🇵Japanese Yen</string>
@@ -46,4 +47,11 @@
     <string name="rub">🇷🇺Russian Ruble</string>
     <string name="inr">🇮🇳Indian Rupee</string>
     <string name="chf">🇨🇭Swiss Frank</string>
+    <string name="hkd">🇭🇰Hong Kong Dollar</string>
+    <string name="sek">🇸🇪Swedish Krona</string>
+    <string name="krw">🇰🇷Korean Won</string>
+    <string name="nok">🇳🇴Norwegian Krona</string>
+    <string name="mxn">🇲🇽Mexican Peso</string>
+    <string name="zar">🇿🇦South African Rand</string>
+    <string name="brl">🇧🇷Brazilian Real</string>
 </resources>

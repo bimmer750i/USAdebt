@@ -31,12 +31,9 @@ class SelectedCurrenciesViewModel(
     private val _currencyList = MutableLiveData<CurrencyV2Result>()
     val currencyList: LiveData<CurrencyV2Result> = _currencyList
 
-    suspend fun loadCurrencies(context: Context) {
-        val selected_currency_list = viewModelScope.async(Dispatchers.IO) {
-            getSelectedCurrenciesUseCase.invoke(context)
-        }.await()?.map { it.currencyCode }
-        Log.d(TAG, "Selected Currencies Codes List: $selected_currency_list")
+    fun loadCurrencies(context: Context) {
         viewModelScope.launch(Dispatchers.IO) {
+            val selected_currency_list = async { getSelectedCurrenciesUseCase.invoke(context)?.map { it.currencyCode } }.await()
             loadSelectedCurrenciesUseCase(context, selected_currency_list as ArrayList<String>).onEach {
                 _currencyList.postValue(it)
             }.collect()

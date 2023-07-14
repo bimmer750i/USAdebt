@@ -10,4 +10,6 @@ interface FragmentController {
 
     fun showError()
 
+    fun showEmpty()
+
 }
