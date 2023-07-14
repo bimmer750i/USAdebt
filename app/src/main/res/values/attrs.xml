@@ -5,4 +5,22 @@
     <attr name="font" format="reference"/>
     <attr name="spinnercolor" format="color"/>
     <attr name="spinnerdropcolor" format="color"/>
+
+    
+    <declare-styleable name="CustomProgressBarArc">
+        <attr name="progressBarColor" format="color"/>
+        <attr name="isLoading" format="boolean"/>
+        <attr name="arcPercentage" format="integer"/>
+        <attr name="progressBarWidth" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="ImageProgressBarView">
+        <attr name="imageProgressBarColor" format="color"/>
+        <attr name="imageIsLoading" format="boolean"/>
+        <attr name="imageArcPercentage" format="integer"/>
+        <attr name="imageProgressBarWidth" format="integer"/>
+        <attr name="imageSource" format="reference"/>
+    </declare-styleable>
+    
 </resources>
+

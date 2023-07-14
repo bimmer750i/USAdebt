@@ -6,8 +6,10 @@ import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import broz.tito.usadebt.App
 import broz.tito.usadebt.R
 import broz.tito.usadebt.databinding.FragmentDebtBinding
@@ -16,6 +18,9 @@ import broz.tito.usadebt.model.PendingDebtResult
 import broz.tito.usadebt.model.SuccessDebtResult
 import broz.tito.usadebt.presentation.viewmodels.DebtFragmentViewModel
 import broz.tito.usadebt.presentation.viewmodels.factories.DebtFragmentViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -45,6 +50,8 @@ class DebtFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDebtBinding.inflate(inflater,container,false)
+
+
         binding.button.setOnClickListener {
             if (!isExtended) {
                 isExtended = true
@@ -108,11 +115,13 @@ class DebtFragment : Fragment() {
     }
 
     private fun showProgressBar() {
-        binding.progressBar2.visibility = View.VISIBLE
+        //binding.progressBar2.visibility = View.VISIBLE
+        binding.imageView.isLoading = true
     }
 
     private fun hideProgressBar() {
-        binding.progressBar2.visibility = View.GONE
+        //binding.progressBar2.visibility = View.GONE
+        binding.imageView.isLoading = false
     }
 
 }
