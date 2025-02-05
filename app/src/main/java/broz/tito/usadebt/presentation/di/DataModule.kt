@@ -36,7 +36,7 @@ class DataModule {
     @Provides
     fun provideCurrencyV2RemoteService(): CurrencyRemoteService {
         val retrofit2 = Retrofit.Builder()
-            .baseUrl("https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/")
+            .baseUrl("https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         return retrofit2.create(CurrencyRemoteService::class.java)

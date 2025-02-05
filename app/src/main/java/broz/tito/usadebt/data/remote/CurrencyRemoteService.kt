@@ -6,7 +6,7 @@ import retrofit2.http.GET
 
 interface CurrencyRemoteService {
 
-    @GET("latest/currencies/usd.json")
+    @GET("currencies/usd.json")
     suspend fun getCurrency_v2(): Response<RawCurrencyV2>
 
 }
